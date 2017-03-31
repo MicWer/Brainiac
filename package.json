@@ -1,0 +1,25 @@
+{
+  "name": "furry",
+  "version": "1.0.0",
+  "description": "## Przygotowanie",
+  "main": "index.js",
+  "dependencies": {
+    "webpack": "^2.3.2"
+  },
+  "devDependencies": {
+    "webpack": "^2.3.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MicWer/WAR_FRO_S_16_Furry_game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MicWer/WAR_FRO_S_16_Furry_game/issues"
+  },
+  "homepage": "https://github.com/MicWer/WAR_FRO_S_16_Furry_game#readme"
+}
