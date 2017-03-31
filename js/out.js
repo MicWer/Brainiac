@@ -122,8 +122,8 @@ this.showCoin = function() {
 }
 
 var gra = new Game();
-game.showFurry();
-game.showCoin();
+gra.showFurry();
+gra.showCoin();
 
 
 /***/ })
