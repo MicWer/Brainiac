@@ -10,7 +10,6 @@ var Game = function() {
     this.gameEnd = false;
     this.coin = new Coin();
     this.score = 0;
-    this.interval = 175;
     this.index = function(x, y) {
         return x + (y * 10);
     }
@@ -26,9 +25,8 @@ var Game = function() {
     this.startGame = function() {
         var self = this;
         this.idSetInterval = setInterval(function() {
-
             self.moveFurry();
-        }, self.interval);
+        }, 250);
     }
 
     this.moveFurry = function() {
@@ -75,12 +73,12 @@ var Game = function() {
 
     this.checkCoinCollision = function() {
         var self = this;
-        this.coinStyle = document.querySelector('.coin');
+        this.coinEx = document.querySelector('.coin');
         if ((this.coin.x == this.furry.x) && (this.coin.y == this.furry.y)) {
-            this.score += 1
-            this.scoreBoard.innerText = this.score;
-            this.coinStyle.classList.remove('coin');
-            this.coinStyle.classList.add('furry');
+            this.score += 1;
+            this.scoreBoard.innerHTML = this.score;
+            this.coinEx.classList.remove('coin');
+            this.coinEx.classList.add('furry');
             this.coin = new Coin();
             this.showCoin();
             clearInterval(this.idSetInterval);
@@ -100,7 +98,6 @@ var Game = function() {
             this.gameEnd = true;
             this.boardGame.style.display = "none";
             this.finalScore.innerHTML = "<strong>GAME OVER</strong>, zdobyłeś " + this.score + " pkt.";
-
         }
     }
 }
