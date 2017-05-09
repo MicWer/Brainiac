@@ -8,4 +8,6 @@ Rules:
 -Don't hit the border lines
 -Have fun :)
 
+Click to play - https://micwer.github.io/Furry-Game/
+
 
