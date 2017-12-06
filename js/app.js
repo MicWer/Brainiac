@@ -1,12 +1,11 @@
 var Game = require("./game.js");
 
-
 var game = new Game();
-game.showFurry();
-game.showCoin();
+game.showBrainiac();
+game.showWeed();
 game.startGame();
 
 
 document.addEventListener('keydown', function(event) {
-    game.turnFurry(event);
+    game.turnBrainiac(event);
 });

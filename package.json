@@ -3,23 +3,22 @@
   "version": "1.0.0",
   "description": "## Przygotowanie",
   "main": "index.js",
-  "dependencies": {
-    "webpack": "^2.3.2"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "webpack": "^2.3.2"
+    "material-design-lite": "^1.3.0",
+    "webpack": "^2.7.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MicWer/WAR_FRO_S_16_Furry_game.git"
+    "url": "git+https://github.com/MicWer/Furry-Game.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MicWer/WAR_FRO_S_16_Furry_game/issues"
+    "url": "https://github.com/MicWer/Furry-Game/issues"
   },
-  "homepage": "https://github.com/MicWer/WAR_FRO_S_16_Furry_game#readme"
+  "homepage": "https://github.com/MicWer/Furry-Game#readme"
 }

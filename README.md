@@ -1,13 +1,13 @@
-## Furry-Game
+## Brainiac on a Trip
 ### Simple Game created in JavaScript (ES5) (including keypress events, collision check, moving directions etc.)
 
-Furry is our Game Hero - He's all about the Gold $$$ 
+Brainiac is our Game Hero - He's all about Weed $$$
 
 Rules: 
--Catch as many coins as you can
+-Rip as many weeds as you can
 -Don't hit the border lines
 -Have fun :)
 
-Click to play - https://micwer.github.io/Furry-Game/
+Click to play - https://micwer.github.io/Brainiac/
 
 

@@ -6,9 +6,9 @@
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -70,108 +70,127 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Coin = __webpack_require__(2);
-var Furry = __webpack_require__(3);
-
+var Weed = __webpack_require__(3);
+var Brainiac = __webpack_require__(2);
 
 var Game = function() {
     this.board = document.querySelectorAll("#board div");
     this.scoreBoard = document.querySelector("#score div strong");
     this.finalScore = document.querySelector("#score div");
-    this.furry = new Furry();
+    this.weed = new Weed();
+    this.brainiac = new Brainiac();
     this.gameEnd = false;
-    this.coin = new Coin();
     this.score = 0;
     this.index = function(x, y) {
         return x + (y * 10);
     }
 
-    this.showFurry = function() {
-        this.board[this.index(this.furry.x, this.furry.y)].classList.add('furry');
+    this.showBrainiac = function() {
+        this.board[this.index(this.brainiac.x, this.brainiac.y)].classList.add('brainiac');
     }
 
-    this.showCoin = function() {
-        this.board[this.index(this.coin.x, this.coin.y)].classList.add('coin');
+    this.showWeed = function() {
+        this.board[this.index(this.weed.x, this.weed.y)].classList.add('weed');
     }
 
     this.startGame = function() {
         var self = this;
+
         this.idSetInterval = setInterval(function() {
-            self.moveFurry();
-        }, 250);
+            self.moveBrainiac();
+        }, 150);
     }
 
-    this.moveFurry = function() {
-        var self = this.furry;
+    this.moveBrainiac = function() {
+        var self = this.brainiac;
 
-        if (self.direction === "right") {
-            self.x += 1;
-        } else if (self.direction === "left") {
-            self.x -= 1;
-        } else if (self.direction === "down") {
-            self.y += 1;
-        } else if (self.direction === "up") {
-            self.y -= 1;
+        switch(self.direction) {
+            case 'right':
+                self.x += 1;
+                break;
+            case 'left':
+                self.x -= 1;
+                break;
+            case 'up':
+                self.y -= 1;
+                break;
+            case 'down':
+                self.y += 1;
+                break;
         }
+
         this.gameOver();
-        if (this.gameEnd == false) {
-            this.hideFurry();
+
+        if (!this.gameEnd) {
+            this.hideBrainiac();
             this.checkCoinCollision();
-            this.showFurry();
+            this.showBrainiac();
         }
     }
 
-    this.hideFurry = function() {
-        this.div = document.querySelector('.furry');
-        this.div.classList.remove('furry');
+    this.hideBrainiac = function() {
+        this.div = document.querySelector('.brainiac');
+        this.div.classList.remove('brainiac');
     }
 
-    this.turnFurry = function(event) {
+    this.turnBrainiac = function(event) {
         switch (event.which) {
             case 37:
-                this.furry.direction = 'left';
+                this.brainiac.direction = 'left';
                 break;
             case 38:
-                this.furry.direction = 'up';
+                this.brainiac.direction = 'up';
                 break;
             case 39:
-                this.furry.direction = 'right';
+                this.brainiac.direction = 'right';
                 break;
             case 40:
-                this.furry.direction = 'down';
+                this.brainiac.direction = 'down';
                 break;
         }
     }
 
     this.checkCoinCollision = function() {
         var self = this;
-        this.coinEx = document.querySelector('.coin');
-        if ((this.coin.x == this.furry.x) && (this.coin.y == this.furry.y)) {
+        this.coinEx = document.querySelector('.weed');
+        if ((this.weed.x === this.brainiac.x) && (this.weed.y === this.brainiac.y)) {
             this.score += 1;
             this.scoreBoard.innerHTML = this.score;
-            this.coinEx.classList.remove('coin');
-            this.coinEx.classList.add('furry');
-            this.coin = new Coin();
-            this.showCoin();
-            clearInterval(this.idSetInterval);
-
-            self.interval -= 5;
+            this.coinEx.classList.remove('weed');
+            this.coinEx.classList.add('brainiac');
+            this.weed = new Weed();
+            this.showWeed();
+            clearInterval(self.idSetInterval);
 
             this.startGame();
         }
     }
 
     this.gameOver = function() {
+
+        var restart = document.createElement("button");
+        restart.innerText = "Try again";
+        restart.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent";
+        restart.style.backgroundColor = "saddlebrown";
+        restart.style.color = "sandybrown";
+        restart.id = "restart";
+
+        this.scoreSection = document.getElementById("score");
         this.boardGame = document.getElementById("board");
 
-        if ((this.furry.x > 9) || (this.furry.x < 0) || (this.furry.y > 9) || (this.furry.y < 0)) {
+        if ((this.brainiac.x > 9) || (this.brainiac.x < 0) || (this.brainiac.y > 9) || (this.brainiac.y < 0)) {
             console.log("game over");
             clearInterval(this.idSetInterval);
             this.gameEnd = true;
             this.boardGame.style.display = "none";
-            this.finalScore.innerHTML = "<strong>GAME OVER</strong>, zdobyłeś " + this.score + " pkt.";
+            this.finalScore.innerHTML =  "<strong>GAME OVER</strong>, You scored " + this.score + " points.";
+            this.scoreSection.appendChild(restart);
+            document.getElementById("restart").addEventListener("click", function() {
+                window.location.reload();
+            })
         }
     }
+
 }
 
 module.exports = Game;
@@ -182,39 +201,38 @@ module.exports = Game;
 
 var Game = __webpack_require__(0);
 
-
 var game = new Game();
-game.showFurry();
-game.showCoin();
+game.showBrainiac();
+game.showWeed();
 game.startGame();
 
 
 document.addEventListener('keydown', function(event) {
-    game.turnFurry(event);
+    game.turnBrainiac(event);
 });
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
-var Coin = function() {
-    this.x = Math.floor(Math.random() * 10);
-    this.y = Math.floor(Math.random() * 10);
-}
-
-module.exports = Coin;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-var Furry = function() {
+var Brainiac = function() {
     this.x = 0;
     this.y = 0;
     this.direction = "right";
 }
 
-module.exports = Furry;
+module.exports = Brainiac;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+var Weed = function() {
+    this.x = Math.floor(Math.random() * 10);
+    this.y = Math.floor(Math.random() * 10);
+}
+
+module.exports = Weed;
 
 /***/ })
 /******/ ]);
